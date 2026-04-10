@@ -642,13 +642,17 @@ a:hover { text-decoration: underline; }
   <div class="nav-section">
     <div class="nav-label">我的最愛</div>
     <a href="#favorites" class="nav-item"><span class="nav-icon">⭐</span>儲存與分組</a>
-    <a href="#presets" class="nav-item"><span class="nav-icon">📋</span>罐頭語（9 類別）</a>
+    <a href="#presets" class="nav-item"><span class="nav-icon">📋</span>罐頭語（10 類別）</a>
+    <a href="#wisdom" class="nav-item"><span class="nav-icon">✨</span>每日智慧小語</a>
+    <a href="#autoplay" class="nav-item"><span class="nav-icon">▶️</span>自動播放</a>
+    <a href="#multigroup" class="nav-item"><span class="nav-icon">🏷️</span>多選群組</a>
   </div>
   <div class="nav-section">
     <div class="nav-label">進階功能</div>
     <a href="#settings" class="nav-item"><span class="nav-icon">⚙️</span>設定</a>
     <a href="#chest" class="nav-item"><span class="nav-icon">🎁</span>寶藏箱</a>
     <a href="#iap" class="nav-item"><span class="nav-icon">💎</span>終生購買</a>
+    <a href="#changelog" class="nav-item"><span class="nav-icon">📝</span>版本更新記錄</a>
     <a href="#faq" class="nav-item"><span class="nav-icon">❓</span>常見問題</a>
   </div>
 </nav>
@@ -659,9 +663,9 @@ a:hover { text-decoration: underline; }
 <!-- Hero -->
 <section class="hero" id="intro">
   <div class="hero-inner">
-    <div class="hero-badge">📖 完整操作手冊 v2.0</div>
+    <div class="hero-badge">📖 完整操作手冊 V1.0.5</div>
     <h1>我的翻譯<br>AI Translator</h1>
-    <p>支援 8 種語言、語音 / 拍照 / 文字三合一翻譯，4,500 句預設罐頭語，完全離線可用。</p>
+    <p>支援 8 種語言、語音 / 拍照 / 文字三合一翻譯，4,600 句預設罐頭語＋100 句每日智慧小語，完全離線可用。</p>
     <div class="lang-pills">
       <span class="lang-pill">🇹🇼 繁體中文</span>
       <span class="lang-pill">🇨🇳 簡體中文</span>
@@ -702,8 +706,8 @@ a:hover { text-decoration: underline; }
     </div>
     <div class="feature-card">
       <div class="feature-card-icon" style="background:#f3e5f5;">📋</div>
-      <h3>罐頭語 4,500 句</h3>
-      <p>9 大情境類別 × 500 句常用語，8 種語言完整翻譯，一鍵播放發音。</p>
+      <h3>罐頭語 4,600 句 ＋ 智慧小語</h3>
+      <p>10 大類別：9 情境 × 500 句常用語 + 100 則每日智慧小語，8 種語言完整翻譯，一鍵播放。</p>
     </div>
   </div>
 </section>
@@ -1107,6 +1111,13 @@ a:hover { text-decoration: underline; }
       <div class="step">
         <div class="step-num" style="background:#5AC8FA;">5</div>
         <div class="step-content">
+          <h4>愛心多選群組 ♡ / ♥</h4>
+          <p>每條記錄右側的愛心圖示（♡）可快速將該記錄加入<strong>多個自訂群組</strong>，同時隸屬於多個群組。已加入群組時愛心變為填滿（♥）。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="background:#5AC8FA;">6</div>
+        <div class="step-content">
           <h4>管理群組（編輯、排序、刪除）</h4>
           <p>右上角群組管理圖示進入管理頁面，可長按拖曳調整順序，向左滑動刪除群組（罐頭語一起刪；語音/拍照記錄移至無群組）。</p>
         </div>
@@ -1118,8 +1129,8 @@ a:hover { text-decoration: underline; }
 <!-- Preset Phrases -->
 <section class="section" id="presets">
   <div class="section-tag">📋 功能五</div>
-  <h2>罐頭語 — 4,500 句預設翻譯</h2>
-  <p class="section-sub">9 大情境 × 500 句 × 8 種語言，出國旅遊必備，完全離線使用。</p>
+  <h2>罐頭語 — 4,600 句預設翻譯</h2>
+  <p class="section-sub">10 大類別 × 8 種語言，出國旅遊必備，完全離線使用。</p>
 
   <div class="category-grid">
     <div class="cat-card">
@@ -1174,7 +1185,13 @@ a:hover { text-decoration: underline; }
       <div class="cat-emoji">💬</div>
       <div class="cat-name" style="color:#00838f;">會話</div>
       <div class="cat-name-en" style="color:#00838f;">Conversation</div>
-      <div class="cat-count" style="background:#e0f7fa; color:#00838f;">500 句 ✨新</div>
+      <div class="cat-count" style="background:#e0f7fa; color:#00838f;">500 句</div>
+    </div>
+    <div class="cat-card" style="border-color:#a78bfa; background:#faf5ff;">
+      <div class="cat-emoji">🌟</div>
+      <div class="cat-name" style="color:#7c3aed;">智慧小語</div>
+      <div class="cat-name-en" style="color:#7c3aed;">Wisdom</div>
+      <div class="cat-count" style="background:#ede9fe; color:#7c3aed;">100 則 ✨新</div>
     </div>
   </div>
 
@@ -1261,9 +1278,239 @@ a:hover { text-decoration: underline; }
   </div>
 </section>
 
+<!-- Wisdom Quotes -->
+<section class="section" id="wisdom">
+  <div class="section-tag">✨ 功能六</div>
+  <h2>每日智慧小語</h2>
+  <p class="section-sub">每天自動從 100 則世界名人名言中推播一則，8 種語言對照顯示，啟發你的<em>每日靈感</em>。</p>
+
+  <div class="demo-layout">
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="phone-status"><span>9:41</span><span>📶 🔋</span></div>
+          <div style="background:linear-gradient(135deg,#f5f3ff,#ede9fe); padding:14px; margin:10px; border-radius:14px; border:1px solid #a78bfa;">
+            <div style="font-size:11px; font-weight:700; color:#7c3aed; margin-bottom:8px; display:flex; align-items:center; gap:5px;">✨ 今日智慧小語</div>
+            <div style="font-size:12px; font-weight:600; color:#1c1c1e; margin-bottom:6px; line-height:1.5;">知之者不如好之者，好之者不如樂之者。</div>
+            <div style="font-size:11px; color:#5b21b6; line-height:1.5; margin-bottom:8px;">Those who know it are not as good as those who love it, and those who love it are not as good as those who enjoy it.</div>
+            <div style="font-size:10px; color:#7c3aed; opacity:0.7;">— Confucius</div>
+            <div style="display:flex; gap:8px; margin-top:10px;">
+              <div style="background:white; border-radius:8px; padding:5px 10px; font-size:10px; font-weight:600; color:#7c3aed; border:1px solid #a78bfa;">🔊 朗讀</div>
+              <div style="background:white; border-radius:8px; padding:5px 10px; font-size:10px; font-weight:600; color:#7c3aed; border:1px solid #a78bfa;">📋 複製</div>
+            </div>
+          </div>
+          <div style="padding:8px 12px; font-size:11px; font-weight:700; color:#1c1c1e;">我的最愛</div>
+          <div class="phone-nav">
+            <div class="phone-tab"><div class="phone-tab-icon">🎙️</div><div>語音</div></div>
+            <div class="phone-tab"><div class="phone-tab-icon">📷</div><div>拍照</div></div>
+            <div class="phone-tab"><div class="phone-tab-icon">⌨️</div><div>文字</div></div>
+            <div class="phone-tab active"><div class="phone-tab-icon">⭐</div><div>最愛</div></div>
+            <div class="phone-tab"><div class="phone-tab-icon">⚙️</div><div>設定</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="steps-wrap">
+      <div class="step">
+        <div class="step-num" style="background:#7c3aed;">1</div>
+        <div class="step-content">
+          <h4>每日自動更新，無需操作</h4>
+          <p>App 根據當天日期自動輪播 100 則智慧小語，橫幅同時顯示於「我的最愛」頁頂部，以及「語音翻譯」主頁。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="background:#7c3aed;">2</div>
+        <div class="step-content">
+          <h4>雙語對照顯示</h4>
+          <p>自動依介面語言（上方）與目標翻譯語言（下方）顯示對照翻譯，支援全部 8 種語言，學習外語更直觀。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="background:#7c3aed;">3</div>
+        <div class="step-content">
+          <h4>一鍵朗讀 &amp; 複製分享</h4>
+          <p>點擊「🔊 朗讀」可用目標語言發音；「📋 複製」可一次複製原文、譯文與作者，方便分享至社交媒體。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="background:#7c3aed;">4</div>
+        <div class="step-content">
+          <h4>可在設定中關閉</h4>
+          <p>前往「設定 → 我的最愛設定 → 每日智慧小語」，可切換開/關。關閉後橫幅在兩個頁面同時隱藏。</p>
+        </div>
+      </div>
+      <div class="tip-box" style="border-color:#7c3aed; background:#faf5ff; color:#5b21b6;">
+        <strong>💡 來源：</strong>100 則智慧小語涵蓋孔子、老子、蘇格拉底、愛因斯坦、甘地等古今中外名人，以及日本、中國傳統諺語，每日輪替一則。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Auto-Play -->
+<section class="section" id="autoplay">
+  <div class="section-tag">▶️ 功能七</div>
+  <h2>自動播放</h2>
+  <p class="section-sub">讓 App 自動連續朗讀罐頭語，解放雙手，<em>邊做事邊學語言</em>。</p>
+
+  <div class="demo-layout reverse">
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="phone-status"><span>9:41</span><span>📶 🔋</span></div>
+          <div style="background:white; padding:12px;">
+            <div style="font-size:13px; font-weight:800; margin-bottom:10px;">自動播放</div>
+            <div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:10px; margin-bottom:10px; font-size:11px;">
+              <div style="font-weight:600; color:#166534; margin-bottom:4px;">▶ 正在播放</div>
+              <div style="font-weight:600; color:#1c1c1e;">請問這附近有超商嗎？</div>
+              <div style="color:#8e8e93; margin-top:2px;">Is there a convenience store nearby?</div>
+            </div>
+            <div style="display:flex; justify-content:center; gap:16px; margin-bottom:12px;">
+              <div style="font-size:24px; cursor:pointer;">⏮</div>
+              <div style="width:48px; height:48px; background:#34C759; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:20px; color:white;">⏸</div>
+              <div style="font-size:24px; cursor:pointer;">⏭</div>
+            </div>
+            <div style="font-size:10px; color:#8e8e93; text-align:center; margin-bottom:10px;">速度 ●──── 1.0x　　類別 🛍️ 購物</div>
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <div style="background:#e0f7fa; color:#00838f; border-radius:8px; padding:3px 8px; font-size:10px; font-weight:600;">✈️ 機場</div>
+              <div style="background:#fff3e0; color:#e65100; border-radius:8px; padding:3px 8px; font-size:10px; font-weight:600;">🛍️ 購物</div>
+              <div style="background:#f3e5f5; color:#7B1FA2; border-radius:8px; padding:3px 8px; font-size:10px; font-weight:600;">+ 更多</div>
+            </div>
+          </div>
+          <div class="phone-nav">
+            <div class="phone-tab"><div class="phone-tab-icon">🎙️</div><div>語音</div></div>
+            <div class="phone-tab"><div class="phone-tab-icon">📷</div><div>拍照</div></div>
+            <div class="phone-tab"><div class="phone-tab-icon">⌨️</div><div>文字</div></div>
+            <div class="phone-tab active"><div class="phone-tab-icon">⭐</div><div>最愛</div></div>
+            <div class="phone-tab"><div class="phone-tab-icon">⚙️</div><div>設定</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="steps-wrap">
+      <div class="step">
+        <div class="step-num" style="background:#34C759;">1</div>
+        <div class="step-content">
+          <h4>開啟自動播放</h4>
+          <p>在「我的最愛」頁面右上角點擊「▶ 播放」圖示（或綠色 ▶ 按鈕），即可開啟自動播放面板。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="background:#34C759;">2</div>
+        <div class="step-content">
+          <h4>選擇類別 &amp; 語言</h4>
+          <p>選擇要播放的罐頭語類別（可多選，或全選），以及雙語模式（同時朗讀來源語和目標語）。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="background:#34C759;">3</div>
+        <div class="step-content">
+          <h4>調整語速 &amp; 開啟隨機</h4>
+          <p>滑桿可調整朗讀語速（0.3x–0.7x），「隨機」開關讓句子順序打亂，增加學習趣味。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="background:#34C759;">4</div>
+        <div class="step-content">
+          <h4>背景持續播放</h4>
+          <p>支援背景音訊——切換到其他 App 或鎖定螢幕，朗讀仍繼續進行，適合通勤、做家事時使用。</p>
+        </div>
+      </div>
+      <div class="tip-box" style="border-color:#34C759; background:#f0fdf4; color:#166534;">
+        <strong>💡 控制播放：</strong>播放中可點擊「⏮ 上一句」「⏸ 暫停」「⏭ 下一句」，或直接在 iOS 鎖定畫面的媒體控制列操作。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Multi-Group -->
+<section class="section" id="multigroup">
+  <div class="section-tag">🏷️ 功能八</div>
+  <h2>多選群組 — 愛心快速分類</h2>
+  <p class="section-sub">每條記錄可同時隸屬<em>多個自訂群組</em>，愛心一點即完成分類。</p>
+
+  <div class="demo-layout">
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="phone-status"><span>9:41</span><span>📶 🔋</span></div>
+          <div style="background:white; padding:12px;">
+            <div style="font-size:13px; font-weight:800; margin-bottom:8px;">選擇群組</div>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 12px; background:#f0fdf4; border-radius:10px; border:1px solid #86efac;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <div style="width:10px; height:10px; background:#34C759; border-radius:50%;"></div>
+                  <span style="font-size:13px; font-weight:600;">🗺️ 旅遊必備</span>
+                </div>
+                <span style="color:#34C759; font-weight:700; font-size:16px;">✓</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 12px; background:#f8fafc; border-radius:10px; border:1px solid #e2e8f0;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <div style="width:10px; height:10px; background:#4A90D9; border-radius:50%;"></div>
+                  <span style="font-size:13px; font-weight:600;">💼 出差常用</span>
+                </div>
+                <span style="color:#cbd5e1; font-size:16px;">○</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 12px; background:#faf5ff; border-radius:10px; border:1px solid #a78bfa;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <div style="width:10px; height:10px; background:#7c3aed; border-radius:50%;"></div>
+                  <span style="font-size:13px; font-weight:600;">📚 學習清單</span>
+                </div>
+                <span style="color:#7c3aed; font-weight:700; font-size:16px;">✓</span>
+              </div>
+              <div style="text-align:center; margin-top:8px;">
+                <div style="display:inline-flex; align-items:center; gap:5px; background:#e8f2fc; color:#4A90D9; border-radius:8px; padding:6px 14px; font-size:12px; font-weight:600;">＋ 建立新群組</div>
+              </div>
+            </div>
+          </div>
+          <div class="phone-nav">
+            <div class="phone-tab"><div class="phone-tab-icon">🎙️</div><div>語音</div></div>
+            <div class="phone-tab"><div class="phone-tab-icon">📷</div><div>拍照</div></div>
+            <div class="phone-tab"><div class="phone-tab-icon">⌨️</div><div>文字</div></div>
+            <div class="phone-tab active"><div class="phone-tab-icon">⭐</div><div>最愛</div></div>
+            <div class="phone-tab"><div class="phone-tab-icon">⚙️</div><div>設定</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="steps-wrap">
+      <div class="step">
+        <div class="step-num" style="background:#ec4899;">1</div>
+        <div class="step-content">
+          <h4>點擊記錄右側的 ♡ 愛心</h4>
+          <p>在「我的最愛」任一記錄（語音、拍照、文字或罐頭語）的標題列右側，有一個愛心圖示。點擊它開啟群組選取清單。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="background:#ec4899;">2</div>
+        <div class="step-content">
+          <h4>勾選一個或多個自訂群組</h4>
+          <p>清單顯示所有你建立的自訂群組（不含系統預設的罐頭語群組）。點擊任一群組即可切換加入/移除，可同時勾選多個群組。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="background:#ec4899;">3</div>
+        <div class="step-content">
+          <h4>即時在清單內建立新群組</h4>
+          <p>尚無自訂群組時，畫面顯示「建立新群組」捷徑按鈕；有群組時，右上角的「+」資料夾圖示可直接新建群組。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="background:#ec4899;">4</div>
+        <div class="step-content">
+          <h4>愛心顏色指示分組狀態</h4>
+          <p>♡ 灰色空心 = 尚未加入任何自訂群組；♥ 填色實心 = 已加入至少一個自訂群組，顏色為第一個群組的標籤色。</p>
+        </div>
+      </div>
+      <div class="tip-box" style="border-color:#ec4899; background:#fdf2f8; color:#9d174d;">
+        <strong>💡 官方群組不可多選：</strong>系統預設的 10 個罐頭語群組（購物、機場…）不會出現在多選清單中，這些群組由系統管理。多選功能僅針對<strong>你自行建立</strong>的自訂群組。
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Settings -->
 <section class="section" id="settings">
-  <div class="section-tag">⚙️ 功能六</div>
+  <div class="section-tag">⚙️ 功能九</div>
   <h2>設定</h2>
   <p class="section-sub">自訂介面語言、翻譯語言、語音性別，以及廣告相關設定。</p>
 
@@ -1347,13 +1594,20 @@ a:hover { text-decoration: underline; }
           <p>在設定中管理離線翻譯所需的語言包，已下載的語言即使無網路也能翻譯。</p>
         </div>
       </div>
+      <div class="info-box">
+        <div class="info-icon">✨</div>
+        <div class="info-text">
+          <h4>每日智慧小語（開關）</h4>
+          <p>在「設定 → 我的最愛設定」中可切換開/關每日智慧小語橫幅，預設為開啟。關閉後「我的最愛」與「語音翻譯」頁面的橫幅同時隱藏。</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- Treasure Chest -->
 <section class="section" id="chest">
-  <div class="section-tag">🎁 功能七</div>
+  <div class="section-tag">🎁 功能十</div>
   <h2>寶藏箱 — 每日積分</h2>
   <p class="section-sub">每天開啟寶藏箱累積積分，達到 <em>10,000 點</em>可免費兌換 3 個月無廣告體驗。</p>
 
@@ -1398,7 +1652,7 @@ a:hover { text-decoration: underline; }
 
 <!-- IAP -->
 <section class="section" id="iap">
-  <div class="section-tag">💎 功能八</div>
+  <div class="section-tag">💎 功能十一</div>
   <h2>終生購買 — 永久移除廣告</h2>
   <p class="section-sub">一次購買，<em>永久</em>移除所有廣告，支援換機後自動恢復，家人共享可聯絡客服。</p>
 
@@ -1451,6 +1705,94 @@ a:hover { text-decoration: underline; }
   </div>
 </section>
 
+<!-- Changelog -->
+<section class="section" id="changelog">
+  <div class="section-tag">📝 版本記錄</div>
+  <h2>版本更新記錄</h2>
+  <p class="section-sub">記錄每個版本的主要新增功能與修正。</p>
+
+  <div class="faq-list">
+
+    <div class="faq-item open">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <span>🆕 V1.0.5 — 最新版本</span>
+        <span style="font-size:12px; font-weight:400; color:var(--text-ter); margin-left:auto; padding-right:12px;">2025</span>
+      </div>
+      <div class="faq-a">
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li>🌟 <strong>新增「智慧小語 Wisdom」第 10 類別</strong> — 100 則世界名人名言，8 種語言完整翻譯</li>
+          <li>✨ <strong>每日智慧小語橫幅</strong> — 顯示於「我的最愛」及「語音翻譯」頁面頂部，每日自動輪替，支援朗讀與一鍵複製分享</li>
+          <li>♥ <strong>愛心多選群組</strong> — 每條記錄可同時加入多個自訂群組，愛心圖示即時反映分組狀態</li>
+          <li>▶️ <strong>自動播放功能</strong> — 可選類別連續朗讀，支援隨機順序、語速調整（0.3x–0.7x）、雙語模式及背景播放</li>
+          <li>🏷️ <strong>群組多選清單</strong> — 點擊愛心開啟專屬清單，可在清單內直接建立新群組，操作更流暢</li>
+          <li>🔧 <strong>罐頭語數量提升</strong> — 從 4,500 句增加至 4,600 句（含智慧小語 100 則）</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <span>V1.0.4</span>
+        <span style="font-size:12px; font-weight:400; color:var(--text-ter); margin-left:auto; padding-right:12px;">2025</span>
+      </div>
+      <div class="faq-a">
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li>💬 <strong>新增「會話 Conversation」類別</strong> — 500 句日常會話常用語，8 種語言翻譯</li>
+          <li>🌍 <strong>新增德語、法語、義大利語翻譯支援</strong> — 語言總數擴充至 8 種</li>
+          <li>🎁 <strong>積分寶藏箱系統</strong> — 每日 20 個寶藏箱，累積積分可兌換 3 個月無廣告</li>
+          <li>🎟️ <strong>序號兌換系統</strong> — 支援 12 碼序號（XXXX-XXXX-XXXX）兌換無廣告體驗</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <span>V1.0.3</span>
+        <span style="font-size:12px; font-weight:400; color:var(--text-ter); margin-left:auto; padding-right:12px;">2025</span>
+      </div>
+      <div class="faq-a">
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li>🍽️ <strong>新增餐廳、美妝藥房、打電話三大類別</strong> — 各 500 句，完整 8 語言</li>
+          <li>💎 <strong>終生購買（IAP）正式上線</strong> — 一次購買永久移除所有廣告（US$14.99）</li>
+          <li>🔊 <strong>TTS 語言切換</strong> — 展開記錄後可選擇 8 種語言任一朗讀</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <span>V1.0.2</span>
+        <span style="font-size:12px; font-weight:400; color:var(--text-ter); margin-left:auto; padding-right:12px;">2025</span>
+      </div>
+      <div class="faq-a">
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li>🏨 <strong>新增旅館類別</strong> — 500 句飯店住宿常用語</li>
+          <li>🏥 <strong>新增醫院類別</strong> — 500 句就醫問診常用語</li>
+          <li>📂 <strong>群組管理升級</strong> — 支援拖曳排序與多群組篩選列</li>
+          <li>🔍 <strong>搜尋功能</strong> — 可按任意語言搜尋收藏記錄</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <span>V1.0.1 — 首次發布</span>
+        <span style="font-size:12px; font-weight:400; color:var(--text-ter); margin-left:auto; padding-right:12px;">2025</span>
+      </div>
+      <div class="faq-a">
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li>🎙️ <strong>語音翻譯</strong> — 雙向對話模式，完全離線語音識別</li>
+          <li>📷 <strong>拍照翻譯</strong> — Apple Vision OCR + 自動語言偵測</li>
+          <li>⌨️ <strong>文字翻譯</strong> — 即時翻譯，自動偵測語言</li>
+          <li>⭐ <strong>我的最愛</strong> — 群組分類、彩色標籤管理</li>
+          <li>📋 <strong>罐頭語初始版本</strong> — 購物、機場、捷運三大類別，繁中/簡中/英/日/韓 5 種語言</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- FAQ -->
 <section class="section" id="faq">
   <div class="section-tag">❓ 常見問題</div>
@@ -1487,7 +1829,7 @@ a:hover { text-decoration: underline; }
         罐頭語的內容可以自訂嗎？
       </div>
       <div class="faq-a">
-        目前罐頭語的 4,500 條內容是系統預設的，無法修改或新增。但你可以透過「我的最愛」的語音、拍照、文字翻譯功能，將自己常用的句子存入自建群組中，達到類似自訂效果。
+        目前罐頭語的 4,600 條內容是系統預設的，無法修改或新增。但你可以透過「我的最愛」的語音、拍照、文字翻譯功能，將自己常用的句子存入自建群組中，達到類似自訂效果。另外，智慧小語 100 則也可透過「複製」功能分享或儲存。
       </div>
     </div>
     <div class="faq-item">
@@ -1530,7 +1872,7 @@ a:hover { text-decoration: underline; }
   <div class="footer-inner">
     <div>
       <div style="font-size:18px; font-weight:700; color:var(--text); margin-bottom:6px;">🌐 我的翻譯 — AI Translator</div>
-      <div style="font-size:13px;">版本 2.0 · iOS 17.0+ · © 2025 All Rights Reserved</div>
+      <div style="font-size:13px;">版本 V1.0.5 · iOS 17.0+ · © 2025 All Rights Reserved</div>
     </div>
     <div class="footer-links">
       <a href="index.html">隱私權政策</a>
