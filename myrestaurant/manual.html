@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Restaurant — User Manual</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #FF6B00;
+      --orange-light: #FF8C33;
+      --orange-bg: #FFF4EB;
+      --text: #1a1a1a;
+      --text-sub: #555;
+      --border: #e8e8e8;
+      --card-bg: #ffffff;
+      --section-bg: #f9f9f9;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC",
+                   "Noto Sans JP", "Noto Sans KR", sans-serif;
+      background: #f5f5f7;
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, var(--orange) 0%, #FF9500 100%);
+      color: #fff;
+      padding: 48px 24px 40px;
+      text-align: center;
+    }
+    .app-icon {
+      width: 80px; height: 80px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 20px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 40px; margin-bottom: 16px;
+    }
+    header h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.5px; }
+    header p.subtitle { font-size: 1rem; opacity: 0.88; margin-top: 6px; }
+
+    /* ── Language Switcher ── */
+    .lang-bar {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: center; gap: 4px;
+      padding: 10px 16px;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .lang-btn {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 5px 14px;
+      color: var(--text-sub);
+      transition: all 0.18s;
+    }
+    .lang-btn.active, .lang-btn:hover {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: #fff;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 32px 16px 64px;
+    }
+
+    /* ── TOC ── */
+    .toc {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 24px 28px;
+      margin-bottom: 32px;
+    }
+    .toc h2 { font-size: 1rem; font-weight: 700; color: var(--orange); margin-bottom: 12px; }
+    .toc ol { padding-left: 20px; }
+    .toc li { margin-bottom: 5px; }
+    .toc a { color: var(--orange); text-decoration: none; font-size: 0.9rem; }
+    .toc a:hover { text-decoration: underline; }
+
+    /* ── Section Cards ── */
+    .section-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    .section-header {
+      background: var(--orange-bg);
+      border-bottom: 1px solid #ffe5cc;
+      padding: 18px 24px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-icon {
+      font-size: 1.5rem;
+      width: 40px; height: 40px;
+      background: var(--orange);
+      border-radius: 10px;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .section-header h2 {
+      font-size: 1.1rem; font-weight: 700; color: var(--text);
+    }
+    .section-body { padding: 20px 24px; }
+
+    /* ── Step List ── */
+    .steps { list-style: none; padding: 0; }
+    .steps li {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .steps li:last-child { border-bottom: none; }
+    .step-num {
+      background: var(--orange);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      border-radius: 50%;
+      width: 24px; height: 24px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .steps li p { font-size: 0.9rem; color: var(--text); }
+
+    /* ── Tip Box ── */
+    .tip {
+      background: #FFFBF0;
+      border: 1px solid #FFE0A0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 14px;
+      font-size: 0.85rem;
+      color: #7a5500;
+    }
+    .tip::before { content: "💡 "; }
+
+    /* ── Feature Grid ── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .feature-item {
+      background: var(--section-bg);
+      border-radius: 10px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+    }
+    .feature-item .fi-icon { font-size: 1.4rem; margin-bottom: 6px; }
+    .feature-item strong { font-size: 0.85rem; display: block; margin-bottom: 3px; }
+    .feature-item p { font-size: 0.78rem; color: var(--text-sub); }
+
+    /* ── Badge ── */
+    .badge {
+      display: inline-block;
+      background: var(--orange);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      border-radius: 4px;
+      padding: 1px 6px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    /* ── Tab Bar Diagram ── */
+    .tab-bar {
+      display: flex; justify-content: space-around;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 8px;
+      margin: 14px 0;
+    }
+    .tab-item { text-align: center; font-size: 0.72rem; color: var(--text-sub); }
+    .tab-item .ti { font-size: 1.4rem; display: block; margin-bottom: 3px; }
+    .tab-item.active .ti, .tab-item.active { color: var(--orange); font-weight: 700; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 32px 16px;
+      font-size: 0.78rem;
+      color: #aaa;
+    }
+    footer a { color: var(--orange); text-decoration: none; }
+
+    /* ── Language sections ── */
+    [data-lang] { display: none; }
+    [data-lang].visible { display: block; }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.6rem; }
+      .section-body { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="app-icon">🍽️</div>
+  <h1>My Restaurant</h1>
+  <p class="subtitle" id="header-sub">操作手冊 · User Manual · 操作マニュアル · 사용 설명서</p>
+</header>
+
+<nav class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('zh')">繁體中文</button>
+  <button class="lang-btn" onclick="setLang('en')">English</button>
+  <button class="lang-btn" onclick="setLang('ja')">日本語</button>
+  <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+</nav>
+
+<div class="container">
+
+  <!-- ═══════════════════════════════ 繁體中文 ═══════════════════════════════ -->
+  <div data-lang="zh" class="visible">
+
+    <div class="toc">
+      <h2>目錄</h2>
+      <ol>
+        <li><a href="#zh-start">開始使用</a></li>
+        <li><a href="#zh-wheel">轉盤選餐廳</a></li>
+        <li><a href="#zh-list">清單模式</a></li>
+        <li><a href="#zh-paywhl">今日誰請客</a></li>
+        <li><a href="#zh-map">地圖</a></li>
+        <li><a href="#zh-trip">行程規劃</a></li>
+        <li><a href="#zh-stats">消費統計</a></li>
+        <li><a href="#zh-fav">收藏與消費紀錄</a></li>
+        <li><a href="#zh-settings">設定</a></li>
+        <li><a href="#zh-ads">移除廣告</a></li>
+        <li><a href="#zh-feedback">意見回饋</a></li>
+      </ol>
+    </div>
+
+    <!-- 1. 開始使用 -->
+    <div class="section-card" id="zh-start">
+      <div class="section-header">
+        <span class="section-icon">🚀</span>
+        <h2>1. 開始使用</h2>
+      </div>
+      <div class="section-body">
+        <p>首次啟動 <strong>My Restaurant</strong> 時，請依照以下步驟完成基本設定。</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>允許 App 存取您的<strong>位置</strong>（選擇「使用 App 期間」即可），App 才能搜尋附近餐廳。</p></li>
+          <li><span class="step-num">2</span><p>前往底部的<strong>「⚙️ 設定」</strong>頁面，確認 Google Places API Key 已設定（狀態顯示綠色勾號）。</p></li>
+          <li><span class="step-num">3</span><p>在設定頁面調整<strong>篩選條件</strong>：餐廳類型、距離範圍、價格區間、最多顯示筆數。</p></li>
+          <li><span class="step-num">4</span><p>回到「🍽️ 轉盤」頁面，按下 <strong>START</strong> 開始轉動！</p></li>
+        </ul>
+        <p style="margin-top:14px;font-size:0.85rem;color:var(--text-sub);">App 共有 5 個主要頁面，透過底部導覽列切換：</p>
+        <div class="tab-bar">
+          <div class="tab-item active"><span class="ti">🍽️</span>轉盤</div>
+          <div class="tab-item"><span class="ti">🗺️</span>地圖</div>
+          <div class="tab-item"><span class="ti">🧳</span>行程</div>
+          <div class="tab-item"><span class="ti">📊</span>統計</div>
+          <div class="tab-item"><span class="ti">⚙️</span>設定</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 轉盤模式 -->
+    <div class="section-card" id="zh-wheel">
+      <div class="section-header">
+        <span class="section-icon">🎡</span>
+        <h2>2. 轉盤選餐廳</h2>
+      </div>
+      <div class="section-body">
+        <p>轉盤會自動載入附近符合篩選條件的餐廳，每個扇形代表一間餐廳。</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>點選右上角 <strong>🎛️ 篩選</strong> 按鈕可調整本次搜尋條件，不影響設定頁面的預設值。</p></li>
+          <li><span class="step-num">2</span><p>點選 <strong>START</strong>，轉盤開始旋轉，振動回饋會隨轉速變化。</p></li>
+          <li><span class="step-num">3</span><p>轉盤停止後，12 點鐘方向的指標對應到的餐廳即為本次選擇。</p></li>
+          <li><span class="step-num">4</span><p>結果彈窗會顯示餐廳名稱、評分、地址、距離及照片，可點選電話直接撥打。</p></li>
+          <li><span class="step-num">5</span><p>用餐後點選 <strong>記錄消費</strong>，輸入金額與付款方式，系統自動存入統計紀錄。</p></li>
+        </ul>
+        <div class="tip">不喜歡此餐廳？點選「移除並換一間」，系統會從預備清單中補入下一間，不需重新搜尋。</div>
+
+        <p style="margin-top:16px;margin-bottom:8px;font-weight:600;">切換顯示模式</p>
+        <p style="font-size:0.88rem;">點選右上角的 <strong>⬛/🎡</strong> 圖示可在「轉盤模式」與「清單模式」之間切換，也可切換至「今日誰請客」。</p>
+      </div>
+    </div>
+
+    <!-- 3. 清單模式 -->
+    <div class="section-card" id="zh-list">
+      <div class="section-header">
+        <span class="section-icon">📋</span>
+        <h2>3. 清單模式</h2>
+      </div>
+      <div class="section-body">
+        <p>清單模式以卡片清單顯示附近餐廳，適合想自己瀏覽挑選的時候。</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>切換至清單模式後，會顯示依距離排序的餐廳清單。</p></li>
+          <li><span class="step-num">2</span><p>點選任一餐廳卡片，查看詳細資訊（評分、地址、照片、評論）。</p></li>
+          <li><span class="step-num">3</span><p>在詳情頁點選 <strong>⭐ 收藏</strong> 將餐廳加入收藏清單。</p></li>
+          <li><span class="step-num">4</span><p>點選 <strong>隨機選一間</strong>，系統隨機從清單中選出一間並顯示結果。</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 4. 今日誰請客 -->
+    <div class="section-card" id="zh-paywhl">
+      <div class="section-header">
+        <span class="section-icon">🎲</span>
+        <h2>4. 今日誰請客</h2>
+      </div>
+      <div class="section-body">
+        <p>當大家不知道今天要誰付帳，用這個彩色轉盤公平決定！</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>切換至「今日誰請客」模式（右上角圖示）。</p></li>
+          <li><span class="step-num">2</span><p>點選右上角的 <strong>👥 人員管理</strong> 按鈕，新增、刪除或重新排列成員姓名。</p></li>
+          <li><span class="step-num">3</span><p>確認成員名單後，按下 <strong>START</strong> 轉動轉盤。</p></li>
+          <li><span class="step-num">4</span><p>轉盤停止後，指標對準的成員就是今天的請客人！</p></li>
+        </ul>
+        <div class="tip">成員姓名最多顯示 6 個字。人員管理頁面支援長按拖曳調整順序，以及左滑刪除。</div>
+      </div>
+    </div>
+
+    <!-- 5. 地圖 -->
+    <div class="section-card" id="zh-map">
+      <div class="section-header">
+        <span class="section-icon">🗺️</span>
+        <h2>5. 地圖</h2>
+      </div>
+      <div class="section-body">
+        <p>地圖頁面將附近餐廳以標記形式顯示在 Apple 地圖上。</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>地圖會以您目前位置為中心，顯示符合篩選條件的餐廳標記。</p></li>
+          <li><span class="step-num">2</span><p>點選地圖上的橙色標記，下方會彈出該餐廳的摘要資訊。</p></li>
+          <li><span class="step-num">3</span><p>點選摘要卡片可展開完整的餐廳詳情（評分、照片、評論）。</p></li>
+          <li><span class="step-num">4</span><p>點選 <strong>在 Google Maps 中開啟</strong>，可直接導航前往餐廳。</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 6. 行程規劃 -->
+    <div class="section-card" id="zh-trip">
+      <div class="section-header">
+        <span class="section-icon">🧳</span>
+        <h2>6. AI 行程規劃</h2>
+      </div>
+      <div class="section-body">
+        <p>由 AI 依照您的偏好，自動生成旅遊行程計畫。</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>選擇<strong>目的地</strong>：先選國家，再選城市。</p></li>
+          <li><span class="step-num">2</span><p>選擇<strong>景點標籤</strong>（最多顯示 12 個，點選可選取/取消，取消已選景點後會自動輪替新景點）。</p></li>
+          <li><span class="step-num">3</span><p>設定<strong>天數</strong>（1～14 天），以及是否包含住宿、餐廳、景點、交通建議。</p></li>
+          <li><span class="step-num">4</span><p>點選 <strong>✨ 產生行程</strong>，AI 將在約 10-30 秒內生成完整行程。</p></li>
+          <li><span class="step-num">5</span><p>行程自動儲存，可點選右上角 <strong>🕐 歷史行程</strong> 查看所有已儲存行程。</p></li>
+          <li><span class="step-num">6</span><p>點選 <strong>⬆ 分享</strong> 可將行程文字分享給朋友。</p></li>
+        </ul>
+        <div class="tip">第 2 次之後產生行程時可能會出現廣告，廣告播放完畢後行程即開始生成。購買「永久移除廣告」後即可跳過廣告。</div>
+      </div>
+    </div>
+
+    <!-- 7. 消費統計 -->
+    <div class="section-card" id="zh-stats">
+      <div class="section-header">
+        <span class="section-icon">📊</span>
+        <h2>7. 消費統計</h2>
+      </div>
+      <div class="section-body">
+        <p>統計頁面以圖表呈現您的外食消費紀錄，幫助掌握飲食預算。</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>長條圖顯示每個月的總消費金額，直接對比各月花費。</p></li>
+          <li><span class="step-num">2</span><p>圓餅圖顯示付款方式的分佈比例（現金、信用卡、Apple Pay、Line Pay、街口支付）。</p></li>
+          <li><span class="step-num">3</span><p>頁面上方顯示<strong>本月總消費</strong>與<strong>本月平均每次</strong>金額。</p></li>
+        </ul>
+        <div class="tip">消費紀錄從轉盤或清單選完餐廳後，在詳情頁點「記錄消費」新增。也可在歷史紀錄頁面點選已有紀錄進行編輯。</div>
+      </div>
+    </div>
+
+    <!-- 8. 收藏與消費紀錄 -->
+    <div class="section-card" id="zh-fav">
+      <div class="section-header">
+        <span class="section-icon">⭐</span>
+        <h2>8. 收藏與消費紀錄</h2>
+      </div>
+      <div class="section-body">
+        <div class="feature-grid">
+          <div class="feature-item">
+            <div class="fi-icon">⭐</div>
+            <strong>收藏餐廳</strong>
+            <p>在餐廳詳情頁點選星形圖示，將喜歡的餐廳加入收藏，下次可從清單快速找到。</p>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon">💳</div>
+            <strong>標記付款方式</strong>
+            <p>在收藏餐廳的詳情頁，可為餐廳標記支援的付款方式，方便下次記憶。</p>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon">🕐</div>
+            <strong>歷史紀錄</strong>
+            <p>點選轉盤頁面右上角的時鐘圖示，查看所有歷史選擇紀錄及消費金額。</p>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon">🗑️</div>
+            <strong>批量刪除</strong>
+            <p>在歷史紀錄頁面右上角點選「選取」，可勾選多筆紀錄後批量刪除。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. 設定 -->
+    <div class="section-card" id="zh-settings">
+      <div class="section-header">
+        <span class="section-icon">⚙️</span>
+        <h2>9. 設定</h2>
+      </div>
+      <div class="section-body">
+        <ul class="steps">
+          <li><span class="step-num">1</span><p><strong>餐廳類型</strong>：可複選多種料理類型（日式、韓式、中式、咖啡廳等），不選代表搜尋所有類型。</p></li>
+          <li><span class="step-num">2</span><p><strong>搜尋距離</strong>：300 公尺 ～ 5 公里，根據您的所在地設定合適範圍。</p></li>
+          <li><span class="step-num">3</span><p><strong>價格區間</strong>：💲 ~ 💲💲💲💲，可複選多個價格帶。</p></li>
+          <li><span class="step-num">4</span><p><strong>最多顯示筆數</strong>：轉盤最多同時顯示的餐廳數（預設 10 間，最多 20 間）。</p></li>
+          <li><span class="step-num">5</span><p><strong>介面語言</strong>：繁體中文 / English / 日本語 / 한국어，切換後即時生效。</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 10. 移除廣告 -->
+    <div class="section-card" id="zh-ads">
+      <div class="section-header">
+        <span class="section-icon">🌟</span>
+        <h2>10. 移除廣告</h2>
+      </div>
+      <div class="section-body">
+        <p>前往 <strong>設定 → 廣告管理</strong> 可查看目前廣告狀態並進行相關操作。</p>
+        <div class="feature-grid">
+          <div class="feature-item">
+            <div class="fi-icon">⭐</div>
+            <strong>永久移除廣告</strong>
+            <p>一次付費，永久享有無廣告體驗，同一 Apple ID 可在多個裝置恢復購買。</p>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon">🎫</div>
+            <strong>優惠碼</strong>
+            <p>輸入格式為 XXXX-XXXX-XXXX 的優惠碼，可享有期限內免廣告（3 個月、6 個月或 1 年）。</p>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon">🔄</div>
+            <strong>恢復購買</strong>
+            <p>換新手機或重新安裝後，點選「恢復購買」即可免費回復永久移除廣告資格。</p>
+          </div>
+        </div>
+        <div class="tip">廣告僅在行程規劃功能第 2 次使用後才會出現，首次使用完全免費。</div>
+      </div>
+    </div>
+
+    <!-- 11. 意見回饋 -->
+    <div class="section-card" id="zh-feedback">
+      <div class="section-header">
+        <span class="section-icon">✉️</span>
+        <h2>11. 意見回饋</h2>
+      </div>
+      <div class="section-body">
+        <p>遇到問題或有改進建議？前往 <strong>設定 → 聯絡我們 → 回報問題 / 商業合作</strong>，填寫問題描述，並可附上截圖，點選送出後系統將開啟郵件 App 傳送至開發者信箱。</p>
+        <div class="tip">回報 Bug 時，請盡量描述重現步驟（例如：「在轉盤頁面點選 START 後，轉盤沒有旋轉」），有助於開發者更快速排查問題。</div>
+      </div>
+    </div>
+
+  </div><!-- /zh -->
+
+
+  <!-- ═══════════════════════════════ English ═══════════════════════════════ -->
+  <div data-lang="en">
+
+    <div class="toc">
+      <h2>Table of Contents</h2>
+      <ol>
+        <li><a href="#en-start">Getting Started</a></li>
+        <li><a href="#en-wheel">Spin Wheel</a></li>
+        <li><a href="#en-list">List Mode</a></li>
+        <li><a href="#en-paywhl">Who Pays Today?</a></li>
+        <li><a href="#en-map">Map View</a></li>
+        <li><a href="#en-trip">Trip Planner</a></li>
+        <li><a href="#en-stats">Spending Statistics</a></li>
+        <li><a href="#en-fav">Favorites & Records</a></li>
+        <li><a href="#en-settings">Settings</a></li>
+        <li><a href="#en-ads">Remove Ads</a></li>
+        <li><a href="#en-feedback">Feedback</a></li>
+      </ol>
+    </div>
+
+    <!-- 1 -->
+    <div class="section-card" id="en-start">
+      <div class="section-header">
+        <span class="section-icon">🚀</span>
+        <h2>1. Getting Started</h2>
+      </div>
+      <div class="section-body">
+        <p>Follow these steps when launching <strong>My Restaurant</strong> for the first time.</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>Grant <strong>Location</strong> permission when prompted ("While Using the App" is sufficient) so the app can find nearby restaurants.</p></li>
+          <li><span class="step-num">2</span><p>Go to <strong>⚙️ Settings</strong> and confirm the Google Places API Key status shows a green checkmark.</p></li>
+          <li><span class="step-num">3</span><p>Configure your <strong>filters</strong>: restaurant type, distance, price range, and maximum results.</p></li>
+          <li><span class="step-num">4</span><p>Return to the <strong>🍽️ Wheel</strong> tab and tap <strong>START</strong>!</p></li>
+        </ul>
+        <p style="margin-top:14px;font-size:0.85rem;color:var(--text-sub);">The app has 5 main tabs accessible from the bottom navigation bar:</p>
+        <div class="tab-bar">
+          <div class="tab-item active"><span class="ti">🍽️</span>Wheel</div>
+          <div class="tab-item"><span class="ti">🗺️</span>Map</div>
+          <div class="tab-item"><span class="ti">🧳</span>Trip</div>
+          <div class="tab-item"><span class="ti">📊</span>Stats</div>
+          <div class="tab-item"><span class="ti">⚙️</span>Settings</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="section-card" id="en-wheel">
+      <div class="section-header">
+        <span class="section-icon">🎡</span>
+        <h2>2. Spin Wheel</h2>
+      </div>
+      <div class="section-body">
+        <p>The wheel automatically loads nearby restaurants that match your filter settings. Each colored slice represents one restaurant.</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>Tap the <strong>🎛️ Filter</strong> button (top-right) to adjust search parameters for this spin only.</p></li>
+          <li><span class="step-num">2</span><p>Tap <strong>START</strong> to spin. Haptic feedback pulses along with the spin speed.</p></li>
+          <li><span class="step-num">3</span><p>When the wheel stops, the restaurant at the <strong>12 o'clock pointer</strong> is your pick.</p></li>
+          <li><span class="step-num">4</span><p>The result sheet shows the restaurant's name, rating, address, distance, and photos. Tap the phone number to call directly.</p></li>
+          <li><span class="step-num">5</span><p>After your meal, tap <strong>Record Spending</strong>, enter the amount and payment method, and the record is saved automatically.</p></li>
+        </ul>
+        <div class="tip">Don't like this pick? Tap "Remove & Pick Another" — the app will pull in the next restaurant from the reserve list without making a new API call.</div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="section-card" id="en-list">
+      <div class="section-header">
+        <span class="section-icon">📋</span>
+        <h2>3. List Mode</h2>
+      </div>
+      <div class="section-body">
+        <p>List mode displays nearby restaurants as scrollable cards, sorted by distance — perfect when you want to browse and choose yourself.</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>Switch to List Mode using the mode icon in the top-right corner.</p></li>
+          <li><span class="step-num">2</span><p>Tap any restaurant card to view full details: rating, address, photos, and reviews.</p></li>
+          <li><span class="step-num">3</span><p>Tap ⭐ in the detail view to add the restaurant to your Favorites.</p></li>
+          <li><span class="step-num">4</span><p>Tap <strong>Pick One Randomly</strong> to let the app randomly choose from the current list.</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="section-card" id="en-paywhl">
+      <div class="section-header">
+        <span class="section-icon">🎲</span>
+        <h2>4. Who Pays Today?</h2>
+      </div>
+      <div class="section-body">
+        <p>Use this colorful wheel to fairly decide who picks up the tab!</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>Switch to "Who Pays Today?" mode via the mode icon (top-right).</p></li>
+          <li><span class="step-num">2</span><p>Tap the <strong>👥 Members</strong> button to add, remove, or reorder participant names.</p></li>
+          <li><span class="step-num">3</span><p>Confirm the member list, then tap <strong>START</strong>.</p></li>
+          <li><span class="step-num">4</span><p>Whoever the pointer lands on when the wheel stops pays today!</p></li>
+        </ul>
+        <div class="tip">Names longer than 6 characters are truncated on the wheel. In the Members sheet, long-press to reorder and swipe left to delete.</div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="section-card" id="en-map">
+      <div class="section-header">
+        <span class="section-icon">🗺️</span>
+        <h2>5. Map View</h2>
+      </div>
+      <div class="section-body">
+        <p>The Map tab shows nearby restaurants as pins on an Apple Maps view.</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>The map centers on your current location and displays restaurants matching your filters.</p></li>
+          <li><span class="step-num">2</span><p>Tap an orange pin to see a summary card at the bottom of the screen.</p></li>
+          <li><span class="step-num">3</span><p>Tap the summary card to expand the full restaurant detail view.</p></li>
+          <li><span class="step-num">4</span><p>Tap <strong>Open in Google Maps</strong> to get turn-by-turn navigation.</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="section-card" id="en-trip">
+      <div class="section-header">
+        <span class="section-icon">🧳</span>
+        <h2>6. AI Trip Planner</h2>
+      </div>
+      <div class="section-body">
+        <p>Let AI generate a complete travel itinerary based on your preferences.</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>Select a <strong>destination</strong>: choose a country, then a city.</p></li>
+          <li><span class="step-num">2</span><p>Pick <strong>landmark chips</strong> (up to 12 shown at once; deselecting a chip rotates in a fresh one).</p></li>
+          <li><span class="step-num">3</span><p>Set the <strong>number of days</strong> (1–14) and toggle hotel, food, sights, and transit recommendations.</p></li>
+          <li><span class="step-num">4</span><p>Tap <strong>✨ Generate Plan</strong>. The AI will return a detailed itinerary in ~10–30 seconds.</p></li>
+          <li><span class="step-num">5</span><p>Plans are saved automatically. Tap 🕐 <strong>History</strong> (top-right) to view past plans.</p></li>
+          <li><span class="step-num">6</span><p>Tap <strong>⬆ Share</strong> to share the itinerary text with friends.</p></li>
+        </ul>
+        <div class="tip">An interstitial ad may appear starting from your second plan generation. Purchasing "Lifetime Ad-Free" skips all ads.</div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="section-card" id="en-stats">
+      <div class="section-header">
+        <span class="section-icon">📊</span>
+        <h2>7. Spending Statistics</h2>
+      </div>
+      <div class="section-body">
+        <p>The Statistics tab visualizes your dining spending history with charts.</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>A <strong>bar chart</strong> shows total spending per month for easy comparison.</p></li>
+          <li><span class="step-num">2</span><p>A <strong>pie chart</strong> breaks down spending by payment method (Cash, Credit Card, Apple Pay, Line Pay, JKO Pay).</p></li>
+          <li><span class="step-num">3</span><p>The top of the page shows <strong>this month's total</strong> and <strong>average per visit</strong>.</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="section-card" id="en-fav">
+      <div class="section-header">
+        <span class="section-icon">⭐</span>
+        <h2>8. Favorites &amp; Records</h2>
+      </div>
+      <div class="section-body">
+        <div class="feature-grid">
+          <div class="feature-item">
+            <div class="fi-icon">⭐</div>
+            <strong>Favorites</strong>
+            <p>Tap the star icon on any restaurant detail page to save it to your favorites for quick access later.</p>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon">💳</div>
+            <strong>Payment Tags</strong>
+            <p>On a favorited restaurant's detail page, tag which payment methods it accepts — a handy personal note.</p>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon">🕐</div>
+            <strong>Spin History</strong>
+            <p>Tap the clock icon on the Wheel tab to view all past selections and recorded spending amounts.</p>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon">🗑️</div>
+            <strong>Bulk Delete</strong>
+            <p>In the History view, tap "Select" (top-right) to choose multiple records and delete them at once.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="section-card" id="en-settings">
+      <div class="section-header">
+        <span class="section-icon">⚙️</span>
+        <h2>9. Settings</h2>
+      </div>
+      <div class="section-body">
+        <ul class="steps">
+          <li><span class="step-num">1</span><p><strong>Restaurant Type</strong>: Choose one or more cuisine types (Japanese, Korean, Chinese, Café, etc.). Selecting none searches all types.</p></li>
+          <li><span class="step-num">2</span><p><strong>Search Radius</strong>: 300 m to 5 km from your current location.</p></li>
+          <li><span class="step-num">3</span><p><strong>Price Range</strong>: 💲 to 💲💲💲💲 — select multiple ranges as needed.</p></li>
+          <li><span class="step-num">4</span><p><strong>Max Results</strong>: How many restaurants appear on the wheel (default 10, max 20).</p></li>
+          <li><span class="step-num">5</span><p><strong>Language</strong>: Switch between 繁體中文 / English / 日本語 / 한국어 — takes effect immediately.</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="section-card" id="en-ads">
+      <div class="section-header">
+        <span class="section-icon">🌟</span>
+        <h2>10. Remove Ads</h2>
+      </div>
+      <div class="section-body">
+        <p>Go to <strong>Settings → Ad Management</strong> to see your current ad status and available options.</p>
+        <div class="feature-grid">
+          <div class="feature-item">
+            <div class="fi-icon">⭐</div>
+            <strong>Lifetime Ad-Free</strong>
+            <p>One-time purchase for a permanent ad-free experience, restorable on multiple devices with the same Apple ID.</p>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon">🎫</div>
+            <strong>Promo Code</strong>
+            <p>Enter a XXXX-XXXX-XXXX code for a temporary ad-free period (3 months, 6 months, or 1 year).</p>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon">🔄</div>
+            <strong>Restore Purchase</strong>
+            <p>After reinstalling or switching devices, tap "Restore Purchases" to reclaim your Lifetime Ad-Free status at no charge.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="section-card" id="en-feedback">
+      <div class="section-header">
+        <span class="section-icon">✉️</span>
+        <h2>11. Feedback</h2>
+      </div>
+      <div class="section-body">
+        <p>Found a bug or have a suggestion? Go to <strong>Settings → Contact Us → Report Issue / Business Inquiry</strong>. Fill in a description, optionally attach a screenshot, and tap Send to open your Mail app with everything pre-filled.</p>
+        <div class="tip">When reporting a bug, please describe the steps to reproduce it (e.g., "Tapped START on the Wheel tab and the wheel didn't spin"). This helps the developer identify and fix the issue faster.</div>
+      </div>
+    </div>
+
+  </div><!-- /en -->
+
+
+  <!-- ═══════════════════════════════ 日本語 ═══════════════════════════════ -->
+  <div data-lang="ja">
+
+    <div class="toc">
+      <h2>目次</h2>
+      <ol>
+        <li><a href="#ja-start">はじめに</a></li>
+        <li><a href="#ja-wheel">ルーレットでレストランを選ぶ</a></li>
+        <li><a href="#ja-list">リストモード</a></li>
+        <li><a href="#ja-paywhl">今日は誰がおごる？</a></li>
+        <li><a href="#ja-map">マップ表示</a></li>
+        <li><a href="#ja-trip">旅行プランナー</a></li>
+        <li><a href="#ja-stats">消費統計</a></li>
+        <li><a href="#ja-fav">お気に入りと記録</a></li>
+        <li><a href="#ja-settings">設定</a></li>
+        <li><a href="#ja-ads">広告を削除</a></li>
+        <li><a href="#ja-feedback">フィードバック</a></li>
+      </ol>
+    </div>
+
+    <!-- 1 -->
+    <div class="section-card" id="ja-start">
+      <div class="section-header">
+        <span class="section-icon">🚀</span>
+        <h2>1. はじめに</h2>
+      </div>
+      <div class="section-body">
+        <p><strong>My Restaurant</strong> を初めて起動したら、以下の手順で初期設定を完了してください。</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>位置情報の使用を許可してください（「アプリ使用中のみ」で OK）。近くのレストランを検索するために必要です。</p></li>
+          <li><span class="step-num">2</span><p>下部の <strong>⚙️ 設定</strong> タブを開き、Google Places API キーのステータスが緑色のチェックマークになっているか確認してください。</p></li>
+          <li><span class="step-num">3</span><p><strong>フィルター</strong>（レストランの種類・距離・価格帯・最大件数）を設定します。</p></li>
+          <li><span class="step-num">4</span><p>🍽️ ルーレットタブに戻り、<strong>START</strong> をタップして始めましょう！</p></li>
+        </ul>
+        <p style="margin-top:14px;font-size:0.85rem;color:var(--text-sub);">アプリには5つのメインタブがあります：</p>
+        <div class="tab-bar">
+          <div class="tab-item active"><span class="ti">🍽️</span>ルーレット</div>
+          <div class="tab-item"><span class="ti">🗺️</span>マップ</div>
+          <div class="tab-item"><span class="ti">🧳</span>旅行</div>
+          <div class="tab-item"><span class="ti">📊</span>統計</div>
+          <div class="tab-item"><span class="ti">⚙️</span>設定</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="section-card" id="ja-wheel">
+      <div class="section-header">
+        <span class="section-icon">🎡</span>
+        <h2>2. ルーレットでレストランを選ぶ</h2>
+      </div>
+      <div class="section-body">
+        <p>ルーレットにはフィルター条件に一致する近くのレストランが自動で読み込まれます。各扇形が1軒のレストランを表します。</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>右上の <strong>🎛️ フィルター</strong> ボタンで今回だけの検索条件を調整できます。</p></li>
+          <li><span class="step-num">2</span><p><strong>START</strong> をタップするとルーレットが回転し始めます。回転速度に合わせてハプティクスが変化します。</p></li>
+          <li><span class="step-num">3</span><p>ルーレットが止まったとき、<strong>12時の位置のポインター</strong>が指すレストランが今回の選択です。</p></li>
+          <li><span class="step-num">4</span><p>結果シートにはレストランの名前・評価・住所・距離・写真が表示されます。電話番号をタップして直接電話をかけることもできます。</p></li>
+          <li><span class="step-num">5</span><p>食後に <strong>消費を記録</strong> をタップして金額と支払い方法を入力すると、統計に自動的に保存されます。</p></li>
+        </ul>
+        <div class="tip">このレストランが気に入らない場合は「削除して次へ」をタップ。予備リストから次のレストランが自動で補充され、再検索の必要はありません。</div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="section-card" id="ja-list">
+      <div class="section-header">
+        <span class="section-icon">📋</span>
+        <h2>3. リストモード</h2>
+      </div>
+      <div class="section-body">
+        <p>リストモードでは近くのレストランをカード形式で表示します。自分で選びたいときに便利です。</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>右上のモード切替アイコンでリストモードに切り替えます。</p></li>
+          <li><span class="step-num">2</span><p>カードをタップして評価・住所・写真・レビューを確認します。</p></li>
+          <li><span class="step-num">3</span><p>詳細画面で ⭐ をタップしてお気に入りに追加します。</p></li>
+          <li><span class="step-num">4</span><p><strong>ランダムで選ぶ</strong> をタップすると現在のリストからランダムに1軒選択されます。</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="section-card" id="ja-paywhl">
+      <div class="section-header">
+        <span class="section-icon">🎲</span>
+        <h2>4. 今日は誰がおごる？</h2>
+      </div>
+      <div class="section-body">
+        <p>カラフルなルーレットで、誰が今日の会計を担当するかを公平に決めましょう！</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>右上のモードアイコンで「今日は誰がおごる？」モードに切り替えます。</p></li>
+          <li><span class="step-num">2</span><p>右上の <strong>👥 メンバー管理</strong> ボタンで参加者の名前を追加・削除・並べ替えます。</p></li>
+          <li><span class="step-num">3</span><p>メンバー確認後、<strong>START</strong> をタップしてルーレットを回します。</p></li>
+          <li><span class="step-num">4</span><p>ポインターが止まった人が今日のおごり担当！</p></li>
+        </ul>
+        <div class="tip">名前が6文字を超える場合はルーレット上で省略されます。メンバー管理画面では長押しで並べ替え、左スワイプで削除ができます。</div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="section-card" id="ja-map">
+      <div class="section-header">
+        <span class="section-icon">🗺️</span>
+        <h2>5. マップ表示</h2>
+      </div>
+      <div class="section-body">
+        <p>マップタブでは Apple マップ上に近くのレストランをピンで表示します。</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>現在地を中心に、フィルター条件に一致するレストランのピンが表示されます。</p></li>
+          <li><span class="step-num">2</span><p>オレンジ色のピンをタップすると、画面下部にレストランの概要カードが表示されます。</p></li>
+          <li><span class="step-num">3</span><p>概要カードをタップして詳細情報（評価・写真・レビュー）を確認します。</p></li>
+          <li><span class="step-num">4</span><p><strong>Google マップで開く</strong> をタップしてナビゲーションを開始します。</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="section-card" id="ja-trip">
+      <div class="section-header">
+        <span class="section-icon">🧳</span>
+        <h2>6. AI 旅行プランナー</h2>
+      </div>
+      <div class="section-body">
+        <p>AI があなたの好みに合わせた旅行プランを自動生成します。</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p><strong>目的地</strong>を選択：まず国を選び、次に都市を選びます。</p></li>
+          <li><span class="step-num">2</span><p><strong>観光スポットチップ</strong>を選択（最大12個表示、選択解除すると新しいスポットがローテーションで追加されます）。</p></li>
+          <li><span class="step-num">3</span><p><strong>日数</strong>（1〜14日）と、ホテル・食事・観光・交通のオプションを設定します。</p></li>
+          <li><span class="step-num">4</span><p><strong>✨ プランを生成</strong> をタップ。10〜30秒でAIが詳細プランを返します。</p></li>
+          <li><span class="step-num">5</span><p>プランは自動保存されます。右上の 🕐 <strong>履歴</strong> で過去のプランを確認できます。</p></li>
+          <li><span class="step-num">6</span><p><strong>⬆ 共有</strong> をタップして旅行プランをシェアできます。</p></li>
+        </ul>
+        <div class="tip">2回目以降のプラン生成時に広告が表示される場合があります。「広告を永久削除」を購入すると広告がスキップされます。</div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="section-card" id="ja-stats">
+      <div class="section-header">
+        <span class="section-icon">📊</span>
+        <h2>7. 消費統計</h2>
+      </div>
+      <div class="section-body">
+        <p>統計タブではグラフで外食の消費履歴を可視化します。</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p><strong>棒グラフ</strong>で月ごとの合計消費額を比較できます。</p></li>
+          <li><span class="step-num">2</span><p><strong>円グラフ</strong>で支払い方法の内訳（現金・クレジットカード・Apple Pay・Line Pay・JKO Pay）を確認できます。</p></li>
+          <li><span class="step-num">3</span><p>ページ上部に<strong>今月の合計</strong>と<strong>1回あたりの平均</strong>が表示されます。</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="section-card" id="ja-fav">
+      <div class="section-header">
+        <span class="section-icon">⭐</span>
+        <h2>8. お気に入りと記録</h2>
+      </div>
+      <div class="section-body">
+        <div class="feature-grid">
+          <div class="feature-item">
+            <div class="fi-icon">⭐</div>
+            <strong>お気に入り</strong>
+            <p>詳細画面で星マークをタップして、好きなレストランをお気に入りに追加します。</p>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon">💳</div>
+            <strong>支払い方法タグ</strong>
+            <p>お気に入りのレストランに対応する支払い方法をメモとして登録できます。</p>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon">🕐</div>
+            <strong>ルーレット履歴</strong>
+            <p>ルーレットタブの時計アイコンをタップして過去の選択履歴を確認します。</p>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon">🗑️</div>
+            <strong>一括削除</strong>
+            <p>履歴画面で「選択」をタップして複数の記録を選択し、まとめて削除できます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="section-card" id="ja-settings">
+      <div class="section-header">
+        <span class="section-icon">⚙️</span>
+        <h2>9. 設定</h2>
+      </div>
+      <div class="section-body">
+        <ul class="steps">
+          <li><span class="step-num">1</span><p><strong>レストランの種類</strong>：和食・韓国料理・中華・カフェなど複数選択可。未選択の場合はすべての種類を検索します。</p></li>
+          <li><span class="step-num">2</span><p><strong>検索範囲</strong>：現在地から300m〜5km。</p></li>
+          <li><span class="step-num">3</span><p><strong>価格帯</strong>：💲〜💲💲💲💲、複数選択可。</p></li>
+          <li><span class="step-num">4</span><p><strong>最大件数</strong>：ルーレットに表示するレストランの数（デフォルト10件、最大20件）。</p></li>
+          <li><span class="step-num">5</span><p><strong>言語</strong>：繁體中文 / English / 日本語 / 한국어 — 切替後すぐに反映されます。</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="section-card" id="ja-ads">
+      <div class="section-header">
+        <span class="section-icon">🌟</span>
+        <h2>10. 広告を削除</h2>
+      </div>
+      <div class="section-body">
+        <p><strong>設定 → 広告管理</strong> で現在の広告ステータスと各種オプションを確認できます。</p>
+        <div class="feature-grid">
+          <div class="feature-item">
+            <div class="fi-icon">⭐</div>
+            <strong>広告を永久削除</strong>
+            <p>一度の購入で永久に広告なし。同じApple IDで複数のデバイスに復元できます。</p>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon">🎫</div>
+            <strong>プロモーションコード</strong>
+            <p>XXXX-XXXX-XXXX 形式のコードを入力して期間限定の広告削除（3ヶ月・6ヶ月・1年）。</p>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon">🔄</div>
+            <strong>購入を復元</strong>
+            <p>再インストール後や機種変更後は「購入を復元」をタップして無料で広告削除を回復できます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="section-card" id="ja-feedback">
+      <div class="section-header">
+        <span class="section-icon">✉️</span>
+        <h2>11. フィードバック</h2>
+      </div>
+      <div class="section-body">
+        <p>不具合や改善のご提案は <strong>設定 → お問い合わせ → バグ報告 / ビジネスのご相談</strong> からどうぞ。説明文を入力し、スクリーンショットを添付して「送信」をタップすると、メールアプリが起動します。</p>
+        <div class="tip">バグ報告の際は再現手順を具体的に記載してください（例：「ルーレット画面でSTARTをタップしたらルーレットが回らなかった」）。開発者が問題を迅速に特定できます。</div>
+      </div>
+    </div>
+
+  </div><!-- /ja -->
+
+
+  <!-- ═══════════════════════════════ 한국어 ═══════════════════════════════ -->
+  <div data-lang="ko">
+
+    <div class="toc">
+      <h2>목차</h2>
+      <ol>
+        <li><a href="#ko-start">시작하기</a></li>
+        <li><a href="#ko-wheel">룰렛으로 식당 선택</a></li>
+        <li><a href="#ko-list">리스트 모드</a></li>
+        <li><a href="#ko-paywhl">오늘의 계산은 누가?</a></li>
+        <li><a href="#ko-map">지도 보기</a></li>
+        <li><a href="#ko-trip">여행 플래너</a></li>
+        <li><a href="#ko-stats">소비 통계</a></li>
+        <li><a href="#ko-fav">즐겨찾기 및 기록</a></li>
+        <li><a href="#ko-settings">설정</a></li>
+        <li><a href="#ko-ads">광고 제거</a></li>
+        <li><a href="#ko-feedback">피드백</a></li>
+      </ol>
+    </div>
+
+    <!-- 1 -->
+    <div class="section-card" id="ko-start">
+      <div class="section-header">
+        <span class="section-icon">🚀</span>
+        <h2>1. 시작하기</h2>
+      </div>
+      <div class="section-body">
+        <p><strong>My Restaurant</strong>를 처음 실행할 때 아래 단계를 따라 기본 설정을 완료하세요.</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p><strong>위치 정보</strong> 사용을 허용해주세요 ("앱 사용 중 허용"이면 충분합니다). 주변 식당을 검색하기 위해 필요합니다.</p></li>
+          <li><span class="step-num">2</span><p>하단의 <strong>⚙️ 설정</strong> 탭을 열고 Google Places API 키 상태가 초록색 체크마크인지 확인합니다.</p></li>
+          <li><span class="step-num">3</span><p><strong>필터</strong>를 설정합니다: 식당 종류, 거리, 가격대, 최대 결과 수.</p></li>
+          <li><span class="step-num">4</span><p>🍽️ 룰렛 탭으로 돌아가 <strong>START</strong>를 탭하세요!</p></li>
+        </ul>
+        <p style="margin-top:14px;font-size:0.85rem;color:var(--text-sub);">앱에는 하단 내비게이션 바로 이동할 수 있는 5개의 탭이 있습니다:</p>
+        <div class="tab-bar">
+          <div class="tab-item active"><span class="ti">🍽️</span>룰렛</div>
+          <div class="tab-item"><span class="ti">🗺️</span>지도</div>
+          <div class="tab-item"><span class="ti">🧳</span>여행</div>
+          <div class="tab-item"><span class="ti">📊</span>통계</div>
+          <div class="tab-item"><span class="ti">⚙️</span>설정</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="section-card" id="ko-wheel">
+      <div class="section-header">
+        <span class="section-icon">🎡</span>
+        <h2>2. 룰렛으로 식당 선택</h2>
+      </div>
+      <div class="section-body">
+        <p>룰렛에는 필터 조건에 맞는 주변 식당이 자동으로 로드됩니다. 각 부채꼴은 한 개의 식당을 나타냅니다.</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>오른쪽 상단의 <strong>🎛️ 필터</strong> 버튼을 탭해 이번 검색의 조건만 조정할 수 있습니다.</p></li>
+          <li><span class="step-num">2</span><p><strong>START</strong>를 탭하면 룰렛이 회전을 시작합니다. 햅틱 피드백이 회전 속도에 따라 변합니다.</p></li>
+          <li><span class="step-num">3</span><p>룰렛이 멈추면 <strong>12시 방향의 포인터</strong>가 가리키는 식당이 이번 선택입니다.</p></li>
+          <li><span class="step-num">4</span><p>결과 시트에 식당 이름, 평점, 주소, 거리, 사진이 표시됩니다. 전화번호를 탭해 바로 전화할 수 있습니다.</p></li>
+          <li><span class="step-num">5</span><p>식사 후 <strong>소비 기록</strong>을 탭해 금액과 결제 방법을 입력하면 통계에 자동 저장됩니다.</p></li>
+        </ul>
+        <div class="tip">이 식당이 마음에 들지 않으면 "제거 후 다음으로"를 탭하세요. 예비 목록에서 다음 식당이 자동으로 채워져 재검색이 필요 없습니다.</div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="section-card" id="ko-list">
+      <div class="section-header">
+        <span class="section-icon">📋</span>
+        <h2>3. 리스트 모드</h2>
+      </div>
+      <div class="section-body">
+        <p>리스트 모드는 주변 식당을 카드 형태로 표시하며, 직접 둘러보며 선택하고 싶을 때 유용합니다.</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>오른쪽 상단의 모드 전환 아이콘으로 리스트 모드로 전환합니다.</p></li>
+          <li><span class="step-num">2</span><p>카드를 탭해 평점, 주소, 사진, 리뷰를 확인합니다.</p></li>
+          <li><span class="step-num">3</span><p>상세 화면에서 ⭐를 탭해 즐겨찾기에 추가합니다.</p></li>
+          <li><span class="step-num">4</span><p><strong>무작위로 선택</strong>을 탭하면 현재 목록에서 랜덤으로 1곳이 선택됩니다.</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="section-card" id="ko-paywhl">
+      <div class="section-header">
+        <span class="section-icon">🎲</span>
+        <h2>4. 오늘의 계산은 누가?</h2>
+      </div>
+      <div class="section-body">
+        <p>화려한 룰렛으로 오늘 밥값을 낼 사람을 공평하게 결정하세요!</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>오른쪽 상단의 모드 아이콘으로 "오늘의 계산은 누가?" 모드로 전환합니다.</p></li>
+          <li><span class="step-num">2</span><p>오른쪽 상단의 <strong>👥 멤버 관리</strong> 버튼으로 참여자 이름을 추가, 삭제, 재정렬합니다.</p></li>
+          <li><span class="step-num">3</span><p>멤버 목록을 확인한 후 <strong>START</strong>를 탭합니다.</p></li>
+          <li><span class="step-num">4</span><p>포인터가 멈춘 곳의 멤버가 오늘의 계산 담당!</p></li>
+        </ul>
+        <div class="tip">이름이 6자를 넘으면 룰렛에서 잘립니다. 멤버 관리 화면에서 길게 눌러 순서를 변경하고, 왼쪽으로 스와이프해 삭제할 수 있습니다.</div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="section-card" id="ko-map">
+      <div class="section-header">
+        <span class="section-icon">🗺️</span>
+        <h2>5. 지도 보기</h2>
+      </div>
+      <div class="section-body">
+        <p>지도 탭에서 Apple 지도 위에 주변 식당 핀을 표시합니다.</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p>현재 위치를 중심으로 필터 조건에 맞는 식당 핀이 표시됩니다.</p></li>
+          <li><span class="step-num">2</span><p>주황색 핀을 탭하면 화면 하단에 식당 요약 카드가 나타납니다.</p></li>
+          <li><span class="step-num">3</span><p>요약 카드를 탭해 전체 상세 정보(평점, 사진, 리뷰)를 확인합니다.</p></li>
+          <li><span class="step-num">4</span><p><strong>Google 지도에서 열기</strong>를 탭해 내비게이션을 시작합니다.</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="section-card" id="ko-trip">
+      <div class="section-header">
+        <span class="section-icon">🧳</span>
+        <h2>6. AI 여행 플래너</h2>
+      </div>
+      <div class="section-body">
+        <p>AI가 당신의 선호에 맞게 완벽한 여행 일정을 자동으로 생성합니다.</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p><strong>목적지</strong>를 선택합니다: 먼저 국가를 선택하고 도시를 선택합니다.</p></li>
+          <li><span class="step-num">2</span><p><strong>랜드마크 칩</strong>을 선택합니다 (최대 12개 표시, 선택 해제 시 새 랜드마크가 자동 보충됩니다).</p></li>
+          <li><span class="step-num">3</span><p><strong>일수</strong>(1~14일)와 호텔, 식당, 관광지, 교통 포함 여부를 설정합니다.</p></li>
+          <li><span class="step-num">4</span><p><strong>✨ 일정 생성</strong>을 탭하면 10~30초 안에 AI가 상세 일정을 반환합니다.</p></li>
+          <li><span class="step-num">5</span><p>일정은 자동 저장됩니다. 오른쪽 상단 🕐 <strong>기록</strong>에서 과거 일정을 확인합니다.</p></li>
+          <li><span class="step-num">6</span><p><strong>⬆ 공유</strong>를 탭해 여행 일정을 친구와 공유합니다.</p></li>
+        </ul>
+        <div class="tip">두 번째 일정 생성부터 광고가 표시될 수 있습니다. "평생 광고 제거"를 구매하면 광고를 건너뜁니다.</div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="section-card" id="ko-stats">
+      <div class="section-header">
+        <span class="section-icon">📊</span>
+        <h2>7. 소비 통계</h2>
+      </div>
+      <div class="section-body">
+        <p>통계 탭에서 차트로 외식 소비 기록을 시각화합니다.</p>
+        <ul class="steps">
+          <li><span class="step-num">1</span><p><strong>막대 차트</strong>로 월별 총 소비 금액을 비교합니다.</p></li>
+          <li><span class="step-num">2</span><p><strong>파이 차트</strong>로 결제 방법별 비중(현금·신용카드·Apple Pay·Line Pay·JKO Pay)을 확인합니다.</p></li>
+          <li><span class="step-num">3</span><p>페이지 상단에 <strong>이번 달 합계</strong>와 <strong>방문당 평균</strong>이 표시됩니다.</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="section-card" id="ko-fav">
+      <div class="section-header">
+        <span class="section-icon">⭐</span>
+        <h2>8. 즐겨찾기 및 기록</h2>
+      </div>
+      <div class="section-body">
+        <div class="feature-grid">
+          <div class="feature-item">
+            <div class="fi-icon">⭐</div>
+            <strong>즐겨찾기</strong>
+            <p>식당 상세 화면에서 별 아이콘을 탭해 마음에 드는 식당을 즐겨찾기에 저장합니다.</p>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon">💳</div>
+            <strong>결제 방법 태그</strong>
+            <p>즐겨찾기한 식당의 상세 화면에서 지원하는 결제 방법을 메모로 태그할 수 있습니다.</p>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon">🕐</div>
+            <strong>룰렛 기록</strong>
+            <p>룰렛 탭의 시계 아이콘을 탭해 과거의 모든 선택 기록과 소비 금액을 확인합니다.</p>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon">🗑️</div>
+            <strong>일괄 삭제</strong>
+            <p>기록 화면에서 "선택"을 탭해 여러 기록을 골라 한 번에 삭제합니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="section-card" id="ko-settings">
+      <div class="section-header">
+        <span class="section-icon">⚙️</span>
+        <h2>9. 설정</h2>
+      </div>
+      <div class="section-body">
+        <ul class="steps">
+          <li><span class="step-num">1</span><p><strong>식당 종류</strong>: 일식, 한식, 중식, 카페 등 여러 종류 선택 가능. 선택하지 않으면 모든 종류를 검색합니다.</p></li>
+          <li><span class="step-num">2</span><p><strong>검색 거리</strong>: 현재 위치 기준 300m ~ 5km.</p></li>
+          <li><span class="step-num">3</span><p><strong>가격대</strong>: 💲 ~ 💲💲💲💲, 여러 가격대 선택 가능.</p></li>
+          <li><span class="step-num">4</span><p><strong>최대 결과 수</strong>: 룰렛에 표시할 식당 수 (기본 10개, 최대 20개).</p></li>
+          <li><span class="step-num">5</span><p><strong>언어</strong>: 繁體中文 / English / 日本語 / 한국어 — 전환 즉시 적용됩니다.</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="section-card" id="ko-ads">
+      <div class="section-header">
+        <span class="section-icon">🌟</span>
+        <h2>10. 광고 제거</h2>
+      </div>
+      <div class="section-body">
+        <p><strong>설정 → 광고 관리</strong>에서 현재 광고 상태와 옵션을 확인하세요.</p>
+        <div class="feature-grid">
+          <div class="feature-item">
+            <div class="fi-icon">⭐</div>
+            <strong>평생 광고 제거</strong>
+            <p>한 번의 결제로 영구적인 광고 없는 경험. 동일한 Apple ID로 여러 기기에서 복원 가능.</p>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon">🎫</div>
+            <strong>프로모션 코드</strong>
+            <p>XXXX-XXXX-XXXX 형식의 코드를 입력해 기간 한정 광고 제거 혜택(3개월·6개월·1년)을 받으세요.</p>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon">🔄</div>
+            <strong>구매 복원</strong>
+            <p>재설치 또는 기기 변경 후 "구매 복원"을 탭하면 무료로 평생 광고 제거를 다시 활성화합니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="section-card" id="ko-feedback">
+      <div class="section-header">
+        <span class="section-icon">✉️</span>
+        <h2>11. 피드백</h2>
+      </div>
+      <div class="section-body">
+        <p>버그를 발견하거나 개선 제안이 있으신가요? <strong>설정 → 문의하기 → 버그 신고 / 비즈니스 문의</strong>로 이동하세요. 설명을 입력하고 스크린샷을 첨부한 후 전송을 탭하면 메일 앱이 열립니다.</p>
+        <div class="tip">버그 신고 시 재현 단계를 구체적으로 적어주세요 (예: "룰렛 화면에서 START를 탭했더니 룰렛이 돌아가지 않았습니다"). 개발자가 더 빠르게 문제를 찾는 데 도움이 됩니다.</div>
+      </div>
+    </div>
+
+  </div><!-- /ko -->
+
+</div><!-- /container -->
+
+<footer>
+  <p>© 2025 My Restaurant · <a href="https://potatohwang.github.io/myrestaurant/">Privacy Policy</a></p>
+  <p style="margin-top:6px;">Made with ❤️ for food lovers</p>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('[data-lang]').forEach(el => el.classList.remove('visible'));
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    const target = document.querySelector('[data-lang="' + lang + '"]');
+    if (target) target.classList.add('visible');
+    event.target.classList.add('active');
+    document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : lang;
+  }
+</script>
+
+</body>
+</html>
